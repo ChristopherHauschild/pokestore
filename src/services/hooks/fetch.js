@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import api from '../api';
+import api from 'services/api';
 
 const useFetch = () => {
   const [data, setData] = useState(undefined);
