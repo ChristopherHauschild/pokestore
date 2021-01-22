@@ -45,11 +45,13 @@ const theme = {
   aqua: {
     colors: {
       primary: '#00c8ab',
+      iprimary: 'rgba(0, 200, 170, 0.1)',
     },
   },
   fire: {
     colors: {
       primary: '#c23232',
+      iprimary: 'rgba(195, 50, 50, 0.1)',
     },
   },
 };

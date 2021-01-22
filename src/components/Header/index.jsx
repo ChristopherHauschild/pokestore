@@ -1,25 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FiShoppingCart as IconCart, FiSearch as IconSearch } from 'react-icons/fi'; // prettier-ignore
 
 import { Wrapper, MainHeader, Title, Search, Cart } from './styles';
 
-const Header = () => {
+const Header = ({ store, title }) => {
   return (
-    <Wrapper>
+    <Wrapper store={store}>
       <MainHeader>
-        <Title>
-          <h1>Header</h1>
+        <Title store={store}>
+          <h1>{title}</h1>
         </Title>
-        <Search>
+        <Search store={store}>
           <input type="text" placeholder="O que você deseja buscar?" />
-          <IconSearch />
+          <div>
+            <IconSearch />
+          </div>
         </Search>
-        <Cart>
+        <Cart store={store}>
           <IconCart />
         </Cart>
       </MainHeader>
     </Wrapper>
   );
+};
+
+Header.propTypes = {
+  store: PropTypes.oneOf('aqua', 'fire').isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;

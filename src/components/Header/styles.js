@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
 export const Wrapper = styled.header`
-  ${({ theme }) => css`
-    background-color: ${theme.aqua.colors.primary};
+  ${({ theme, store }) => css`
+    background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
     display: flex;
     padding: 0 ${theme.common.spacings.medium};
     width: 100%;
@@ -35,12 +36,12 @@ export const MainHeader = styled.div`
 `;
 
 export const Title = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, store }) => css`
     align-items: center;
     display: flex;
 
     > h1 {
-      color: #ffffff;
+      color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
       font-size: ${theme.common.font.sizes.xxxlarge};
 
       ${media.lessThan('medium')`
@@ -51,19 +52,24 @@ export const Title = styled.div`
 `;
 
 export const Search = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, store }) => css`
     align-items: center;
+    border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
     border-radius: ${theme.common.border.radius.small};
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     flex: 1;
+    height: 34px;
     margin: 0 ${theme.common.spacings.medium};
-    padding: ${theme.common.spacings.xxxsmall};
+    max-height: 34px;
+    padding-bottom: ${theme.common.spacings.xxxsmall};
+    padding-left: ${theme.common.spacings.xxxsmall};
+    padding-top: ${theme.common.spacings.xxxsmall};
 
     > input {
       color: ${theme.common.colors.gray};
-      border: 0;
+      border: none;
       border-radius: ${theme.common.border.radius.small};
       outline: 0;
       padding: 0 ${theme.common.spacings.xxsmall};
@@ -86,10 +92,22 @@ export const Search = styled.div`
       }
     }
 
-    > svg {
-      color: ${theme.aqua.colors.primary};
-      height: 24px;
-      width: 24px;
+    > div {
+      align-items: center;
+      background-color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+      border-bottom-right-radius: ${theme.common.border.radius.small};
+      border-top-right-radius: ${theme.common.border.radius.small};
+      display: flex;
+      height: 34px;
+      justify-content: center;
+      max-height: 34px;
+      padding: 0 ${theme.common.spacings.xxxsmall};
+
+      > svg {
+        color:${store === 'aqua' ?  theme.aqua.colors.primary : '#ffffff'};
+        height: 24px;
+        width: 24px;
+      }
     }
 
     ${media.lessThan('medium')`
@@ -99,13 +117,13 @@ export const Search = styled.div`
 `;
 
 export const Cart = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, store }) => css`
     align-items: center;
     display: flex;
     justify-content: center;
 
     > svg {
-      color: #ffffff;
+      color: ${store === 'aqua' ?  '#ffffff' : theme.fire.colors.primary};
       height: 32px;
       width: 32px;
     }

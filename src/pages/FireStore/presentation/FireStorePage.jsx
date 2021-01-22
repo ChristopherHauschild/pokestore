@@ -3,13 +3,13 @@ import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-const AquaStorePage = () => {
+const FireStorePage = () => {
   return (
     <>
-      <Header store="aqua" title="AquaStore" />
+      <Header store="fire" title="FireStore" />
       <Footer />
     </>
   );
 };
 
-export default AquaStorePage;
+export default FireStorePage;
