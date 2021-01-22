@@ -21,9 +21,12 @@ const theme = {
         large: '18px',
         xlarge: '20px',
         xxlarge: '28px',
+        xxxlarge: '32px',
+        xxxxlarge: '42px',
       },
     },
     spacings: {
+      xxxsmall: '4px',
       xxsmall: '8px',
       xsmall: '16px',
       small: '24px',
@@ -34,7 +37,9 @@ const theme = {
     },
     colors: {
       light: '#fafafa',
-      black: '#323232',
+      dark: '#323232',
+      gray: '#929292',
+      xgray: '#9b9b9b',
     },
   },
   aqua: {
