@@ -39,7 +39,7 @@ export const Title = styled.div`
     align-items: center;
     display: flex;
 
-    h1 {
+    > h1 {
       color: #ffffff;
       font-size: ${theme.common.font.sizes.xxxlarge};
 
