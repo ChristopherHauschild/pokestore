@@ -44,12 +44,12 @@ const theme = {
   },
   aqua: {
     colors: {
-      primary: '#2f80ed',
+      primary: '#00c8ab',
     },
   },
   fire: {
     colors: {
-      primary: '#eb5757',
+      primary: '#c23232',
     },
   },
 };
