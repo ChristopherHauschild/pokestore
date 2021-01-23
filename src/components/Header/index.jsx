@@ -1,34 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import { FiShoppingCart as IconCart, FiSearch as IconSearch } from 'react-icons/fi'; // prettier-ignore
 
 import { Wrapper, MainHeader, Title, Search, Cart, Sinalizer } from './styles';
 
-const Header = ({ store, title }) => {
+const Header = () => {
+  const [store, setStore] = useState({});
+
+  const matchAqua = useRouteMatch('/aqua-store');
+  const matchFire = useRouteMatch('/fire-store');
+
+  useEffect(() => {
+    if (matchAqua) setStore({ id: 'aqua', title: 'AquaStore' });
+    if (matchFire) setStore({ id: 'fire', title: 'FireStore' });
+  }, [matchAqua, matchFire]);
+
   return (
-    <Wrapper store={store}>
+    <Wrapper store={store.id}>
       <MainHeader>
-        <Title store={store}>
-          <h1>{title}</h1>
+        <Title>
+          <h1>{store.title}</h1>
         </Title>
-        <Search store={store}>
+        <Search>
           <input type="text" placeholder="Busque pelo nome do Pokémon..." />
           <div>
             <IconSearch />
           </div>
         </Search>
-        <Cart store={store}>
-          <Sinalizer store={store} />
+        <Cart>
+          <Sinalizer />
           <IconCart />
         </Cart>
       </MainHeader>
     </Wrapper>
   );
-};
-
-Header.propTypes = {
-  store: PropTypes.oneOf('aqua', 'fire').isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default Header;

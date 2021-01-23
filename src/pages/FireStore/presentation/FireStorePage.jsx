@@ -1,14 +1,12 @@
 import React from 'react';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Layout from 'components/Layout';
 
 const FireStorePage = () => {
   return (
-    <>
-      <Header store="fire" title="FireStore" />
-      <Footer />
-    </>
+    <Layout>
+      <span>FireStore</span>
+    </Layout>
   );
 };
 

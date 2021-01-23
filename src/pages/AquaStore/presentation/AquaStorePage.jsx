@@ -1,14 +1,12 @@
 import React from 'react';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Layout from 'components/Layout';
 
 const AquaStorePage = () => {
   return (
-    <>
-      <Header store="aqua" title="AquaStore" />
-      <Footer />
-    </>
+    <Layout>
+      <span>AquaStore</span>
+    </Layout>
   );
 };
 

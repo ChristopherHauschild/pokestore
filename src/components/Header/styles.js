@@ -2,24 +2,6 @@
 import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
-export const Wrapper = styled.header`
-  ${({ theme, store }) => css`
-    background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
-    box-shadow: 0 4px 2px -2px ${theme.common.colors.light};
-    display: flex;
-    padding: 0 ${theme.common.spacings.medium};
-    width: 100%;
-
-    ${media.lessThan('medium')`
-      padding: 0 ${theme.common.spacings.small};
-    `}
-
-    ${media.lessThan('small')`
-      padding: 0 ${theme.common.spacings.xsmall};
-    `}
-  `}
-`;
-
 export const MainHeader = styled.div`
   ${({ theme }) => css`
     align-items: center;
@@ -37,12 +19,11 @@ export const MainHeader = styled.div`
 `;
 
 export const Title = styled.div`
-  ${({ theme, store }) => css`
+  ${({ theme }) => css`
     align-items: center;
     display: flex;
 
     > h1 {
-      color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
       font-size: ${theme.common.font.sizes.xxxlarge};
 
       ${media.lessThan('medium')`
@@ -53,9 +34,8 @@ export const Title = styled.div`
 `;
 
 export const Search = styled.div`
-  ${({ theme, store }) => css`
+  ${({ theme }) => css`
     align-items: center;
-    border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
     border-radius: ${theme.common.border.radius.small};
     background-color: #ffffff;
     display: flex;
@@ -97,7 +77,6 @@ export const Search = styled.div`
 
     > div {
       align-items: center;
-      background-color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
       border-bottom-right-radius: ${theme.common.border.radius.small};
       border-top-right-radius: ${theme.common.border.radius.small};
       display: flex;
@@ -107,7 +86,6 @@ export const Search = styled.div`
       padding: 0 ${theme.common.spacings.xxxsmall};
 
       > svg {
-        color:${store === 'aqua' ?  theme.aqua.colors.primary : '#ffffff'};
         height: 24px;
         width: 24px;
       }
@@ -120,14 +98,13 @@ export const Search = styled.div`
 `;
 
 export const Cart = styled.div`
-  ${({ theme, store }) => css`
+  ${({ theme }) => css`
     align-items: center;
     display: flex;
     justify-content: center;
     position: relative;
 
     > svg {
-      color: ${store === 'aqua' ?  '#ffffff' : theme.fire.colors.primary};
       height: 32px;
       width: 32px;
     }
@@ -151,9 +128,6 @@ export const Cart = styled.div`
 
 
 export const Sinalizer = styled.div`
-${({ theme, store }) => css`
-  background-color: ${store === 'aqua' ? theme.fire.colors.primary : '#ffffff'};
-  border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
   border-radius: 50%;
   height: 11.5px;
   position: absolute;
@@ -165,5 +139,50 @@ ${({ theme, store }) => css`
     right: 12px;
     top: 16px;
   `}
-`}
+`;
+
+export const Wrapper = styled.header`
+  ${({ theme, store }) => css`
+    background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
+    box-shadow: 0 4px 2px -2px ${theme.common.colors.light};
+    display: flex;
+    padding: 0 ${theme.common.spacings.medium};
+    width: 100%;
+
+    ${media.lessThan('medium')`
+      padding: 0 ${theme.common.spacings.small};
+    `}
+
+    ${media.lessThan('small')`
+      padding: 0 ${theme.common.spacings.xsmall};
+    `}
+
+    ${Title} {
+      > h1 {
+        color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+      }
+    }
+
+    ${Search} {
+      border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
+
+      > div {
+        background-color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+
+        > svg {
+          color:${store === 'aqua' ?  theme.aqua.colors.primary : '#ffffff'};
+        }
+      }
+    }
+
+    ${Cart} {
+      > svg {
+        color: ${store === 'aqua' ?  '#ffffff' : theme.fire.colors.primary};
+      }
+
+      > ${Sinalizer} {
+        background-color: ${store === 'aqua' ? theme.fire.colors.primary : '#ffffff'};
+      }
+    }
+  `}
 `;
