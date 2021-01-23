@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: ${theme.common.spacings.medium};
+    margin: ${theme.common.spacings.xxsmall} 0;
     width: 100%;
 
     > span {

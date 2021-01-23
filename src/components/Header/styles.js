@@ -120,7 +120,7 @@ export const Cart = styled.div`
       border-radius: 50%;
       box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
       height: 60px;
-      position: absolute;
+      position: fixed;
       right: ${theme.common.spacings.xsmall};
       top: 88vh;
       width: 60px;

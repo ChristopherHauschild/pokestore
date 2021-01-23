@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 export const Picture = styled.picture`
   align-items: center;
@@ -56,14 +57,29 @@ export const Button = styled.button`
 
 export const Wrapper = styled.div`
   ${({ theme, store }) => css`
-    background-color: #ffffff;
-    border-radius: ${theme.common.border.radius.small};
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    flex-direction: column;
-    display: flex;
-    margin: 0 auto;
-    padding: ${theme.common.spacings.xsmall};
-    width: 300px;
+    width: 25%;
+
+    ${media.lessThan('1280px')`
+      width: 33.3%;
+    `}
+
+    ${media.lessThan('900px')`
+      width: 50%;
+    `}
+
+    ${media.lessThan('600px')`
+      width: 100%;
+    `}
+
+    > div {
+      background-color: #ffffff;
+      border-radius: ${theme.common.border.radius.small};
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      flex-direction: column;
+      display: flex;
+      margin: ${theme.common.spacings.xsmall};
+      padding: ${theme.common.spacings.xsmall};
+    }
 
     ${Button} {
       background-color: ${store === 'aqua' ? theme.aqua.colors.primary : '#ffffff'};
