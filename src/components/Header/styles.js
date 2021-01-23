@@ -5,6 +5,7 @@ import media from 'styled-media-query';
 export const Wrapper = styled.header`
   ${({ theme, store }) => css`
     background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
+    box-shadow: 0 4px 2px -2px ${theme.common.colors.light};
     display: flex;
     padding: 0 ${theme.common.spacings.medium};
     width: 100%;
@@ -72,7 +73,9 @@ export const Search = styled.div`
       border: none;
       border-radius: ${theme.common.border.radius.small};
       outline: 0;
+      overflow: hidden;
       padding: 0 ${theme.common.spacings.xxsmall};
+      text-overflow: ellipsis;
       width: 100%;
 
       ::-webkit-input-placeholder {
@@ -121,6 +124,7 @@ export const Cart = styled.div`
     align-items: center;
     display: flex;
     justify-content: center;
+    position: relative;
 
     > svg {
       color: ${store === 'aqua' ?  '#ffffff' : theme.fire.colors.primary};
@@ -143,4 +147,23 @@ export const Cart = styled.div`
       }
     `}
   `}
+`;
+
+
+export const Sinalizer = styled.div`
+${({ theme, store }) => css`
+  background-color: ${store === 'aqua' ? theme.fire.colors.primary : '#ffffff'};
+  border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
+  border-radius: 50%;
+  height: 11.5px;
+  position: absolute;
+  right: -2px;
+  top: 2px;
+  width: 11.5px;
+
+  ${media.lessThan('medium')`
+    right: 12px;
+    top: 16px;
+  `}
+`}
 `;
