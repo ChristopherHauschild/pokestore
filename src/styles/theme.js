@@ -20,7 +20,7 @@ const theme = {
         medium: '16px',
         large: '18px',
         xlarge: '20px',
-        xxlarge: '28px',
+        xxlarge: '26px',
         xxxlarge: '32px',
         xxxxlarge: '42px',
       },

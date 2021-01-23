@@ -6,6 +6,7 @@ export const MainHeader = styled.div`
   ${({ theme }) => css`
     align-items: center;
     display: flex;
+    height: 60px;
     margin: 0 auto;
     max-width: 1280px;
     padding: ${theme.common.spacings.xxsmall} 0;
@@ -14,6 +15,7 @@ export const MainHeader = styled.div`
     ${media.lessThan('medium')`
       align-items: initial;
       flex-direction: column;
+      height: 92px;
     `}
   `}
 `;
@@ -73,6 +75,10 @@ export const Search = styled.div`
       :-ms-input-placeholder {
         color: ${theme.common.colors.xgray};
       }
+
+      ${media.lessThan('medium')`
+        font-size: ${theme.common.font.sizes.small};
+      `}
     }
 
     > div {
@@ -112,16 +118,12 @@ export const Cart = styled.div`
     ${media.lessThan('medium')`
       background-color: ${theme.common.colors.light};
       border-radius: 50%;
-      bottom: ${theme.common.spacings.xsmall};
       box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
       height: 60px;
       position: absolute;
       right: ${theme.common.spacings.xsmall};
+      top: 88vh;
       width: 60px;
-
-      > svg {
-        color: ${theme.common.colors.gray};
-      }
     `}
   `}
 `;
@@ -144,9 +146,10 @@ export const Sinalizer = styled.div`
 export const Wrapper = styled.header`
   ${({ theme, store }) => css`
     background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
-    box-shadow: 0 4px 2px -2px ${theme.common.colors.light};
+    box-shadow: 0 2px 2px -2px ${theme.common.border.color};
     display: flex;
     padding: 0 ${theme.common.spacings.medium};
+    position: relative;
     width: 100%;
 
     ${media.lessThan('medium')`
@@ -177,11 +180,19 @@ export const Wrapper = styled.header`
 
     ${Cart} {
       > svg {
-        color: ${store === 'aqua' ?  '#ffffff' : theme.fire.colors.primary};
+        color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+
+        ${media.lessThan('medium')`
+          color: ${theme.common.colors.gray};
+        `}
       }
 
       > ${Sinalizer} {
         background-color: ${store === 'aqua' ? theme.fire.colors.primary : '#ffffff'};
+
+        ${media.lessThan('medium')`
+          background-color: ${theme.fire.colors.primary};
+        `}
       }
     }
   `}

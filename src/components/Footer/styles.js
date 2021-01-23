@@ -6,6 +6,7 @@ export const Wrapper = styled.footer`
     background-color: ${theme.common.colors.light};
     border-top: 1px solid ${theme.common.border.color};
     display: flex;
+    height: 40px;
     padding: 0 ${theme.common.spacings.medium};
     width: 100%;
 

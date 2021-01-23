@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import React from 'react';
 import { FiShoppingCart as IconCart, FiSearch as IconSearch } from 'react-icons/fi'; // prettier-ignore
+
+import { useStore } from 'hooks/store';
 
 import { Wrapper, MainHeader, Title, Search, Cart, Sinalizer } from './styles';
 
 const Header = () => {
-  const [store, setStore] = useState({});
-
-  const matchAqua = useRouteMatch('/aqua-store');
-  const matchFire = useRouteMatch('/fire-store');
-
-  useEffect(() => {
-    if (matchAqua) setStore({ id: 'aqua', title: 'AquaStore' });
-    if (matchFire) setStore({ id: 'fire', title: 'FireStore' });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const { store } = useStore();
 
   return (
     <Wrapper store={store.id}>

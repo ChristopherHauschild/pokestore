@@ -10,7 +10,14 @@ ${({ theme }) => css`
   }
 
   body {
+    background-color: ${theme.common.colors.light};
     -webkit-font-smoothing: antialised;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
   }
 
   body,
