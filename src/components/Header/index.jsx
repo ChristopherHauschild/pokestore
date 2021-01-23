@@ -13,7 +13,7 @@ const Header = () => {
   useEffect(() => {
     if (matchAqua) setStore({ id: 'aqua', title: 'AquaStore' });
     if (matchFire) setStore({ id: 'fire', title: 'FireStore' });
-  }, [matchAqua, matchFire]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Wrapper store={store.id}>

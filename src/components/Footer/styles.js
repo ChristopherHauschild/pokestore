@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
-export const Wrapper = styled.header`
+export const Wrapper = styled.footer`
   ${({ theme }) => css`
     background-color: ${theme.common.colors.light};
     border-top: 1px solid ${theme.common.border.color};
