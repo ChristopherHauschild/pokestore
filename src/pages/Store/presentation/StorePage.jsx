@@ -13,10 +13,10 @@ import EmptyData from 'components/EmptyData';
 import PokemonList from 'components/PokemonList';
 import Pokemon from 'components/Pokemon';
 
-const FireStorePage = ({ data, loading }) => {
+const StorePage = ({ data, loading, pageTitle }) => {
   return (
     <Layout>
-      <PageTitle title="Pokémon de fogo" />
+      <PageTitle title={pageTitle} />
       <Conditional when={loading}>
         <Loading />
       </Conditional>
@@ -45,7 +45,7 @@ const FireStorePage = ({ data, loading }) => {
   );
 };
 
-FireStorePage.propTypes = {
+StorePage.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -56,10 +56,11 @@ FireStorePage.propTypes = {
     }),
   ),
   loading: PropTypes.bool.isRequired,
+  pageTitle: PropTypes.string.isRequired,
 };
 
-FireStorePage.defaultProps = {
+StorePage.defaultProps = {
   data: [{}],
 };
 
-export default FireStorePage;
+export default StorePage;

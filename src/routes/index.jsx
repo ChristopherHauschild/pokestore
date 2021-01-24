@@ -1,14 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { AquaStore } from 'pages/AquaStore';
-import { FireStore } from 'pages/FireStore';
+import { Store } from 'pages/Store';
 
 const Routes = () => (
   <Switch>
-    <Route path="/aqua-store" component={AquaStore} />
-    <Route path="/fire-store" component={FireStore} />
-    <Redirect to="/aqua-store" component={AquaStore} />
+    <Route path={['/store/water', '/store/fire']} component={Store} />
+    <Redirect to="/store/water" />
   </Switch>
 );
 

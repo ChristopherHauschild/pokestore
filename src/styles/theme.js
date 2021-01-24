@@ -42,7 +42,7 @@ const theme = {
       xgray: '#9b9b9b',
     },
   },
-  aqua: {
+  water: {
     colors: {
       primary: '#00c8ab',
       iprimary: 'rgba(0, 200, 170, 0.1)',

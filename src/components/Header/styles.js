@@ -145,7 +145,7 @@ export const Sinalizer = styled.div`
 
 export const Wrapper = styled.header`
   ${({ theme, store }) => css`
-    background-color: ${store === 'aqua' ? theme.aqua.colors.primary : theme.fire.colors.iprimary};
+    background-color: ${store === 'water' ? theme.water.colors.primary : theme.fire.colors.iprimary};
     box-shadow: 0 2px 2px -2px ${theme.common.border.color};
     display: flex;
     padding: 0 ${theme.common.spacings.medium};
@@ -162,25 +162,25 @@ export const Wrapper = styled.header`
 
     ${Title} {
       > h1 {
-        color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+        color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
       }
     }
 
     ${Search} {
-      border: ${store === 'aqua' ? 'none' : `1px solid ${theme.common.border.color}`};
+      border: ${store === 'water' ? 'none' : `1px solid ${theme.common.border.color}`};
 
       > div {
-        background-color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+        background-color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
 
         > svg {
-          color:${store === 'aqua' ?  theme.aqua.colors.primary : '#ffffff'};
+          color:${store === 'water' ?  theme.water.colors.primary : '#ffffff'};
         }
       }
     }
 
     ${Cart} {
       > svg {
-        color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+        color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
 
         ${media.lessThan('medium')`
           color: ${theme.common.colors.gray};
@@ -188,7 +188,7 @@ export const Wrapper = styled.header`
       }
 
       > ${Sinalizer} {
-        background-color: ${store === 'aqua' ? theme.fire.colors.primary : '#ffffff'};
+        background-color: ${store === 'water' ? theme.fire.colors.primary : '#ffffff'};
 
         ${media.lessThan('medium')`
           background-color: ${theme.fire.colors.primary};

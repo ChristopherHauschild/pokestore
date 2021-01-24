@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 const StoreContext = createContext({});
 
 const StoreProvider = ({ children }) => {
-  const [store, setStore] = useState({});
+  const [store, setStore] = useState(undefined);
 
-  const matchAqua = useRouteMatch('/aqua-store');
-  const matchFire = useRouteMatch('/fire-store');
+  const matchWaterStore = useRouteMatch('/store/water');
+  const matchFireStore = useRouteMatch('/store/fire');
 
   useEffect(() => {
-    if (matchAqua) setStore({ id: 'aqua', title: 'AquaStore' });
-    if (matchFire) setStore({ id: 'fire', title: 'FireStore' });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (matchWaterStore) setStore('water');
+    if (matchFireStore) setStore('fire');
+  }, [matchWaterStore, matchFireStore]);
 
   return (
     <StoreContext.Provider value={{ store }}>{children}</StoreContext.Provider>

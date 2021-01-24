@@ -96,9 +96,9 @@ export const Wrapper = styled.div`
     }
 
     ${Button} {
-      background-color: ${store === 'aqua' ? theme.aqua.colors.primary : '#ffffff'};
-      border: ${store === 'aqua' ? 'none' : `1px solid ${theme.fire.colors.primary}`};
-      color: ${store === 'aqua' ? '#ffffff' : theme.fire.colors.primary};
+      background-color: ${store === 'water' ? theme.water.colors.primary : '#ffffff'};
+      border: ${store === 'water' ? 'none' : `1px solid ${theme.fire.colors.primary}`};
+      color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
     }
   `}
 `;

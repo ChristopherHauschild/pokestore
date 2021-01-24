@@ -14,7 +14,7 @@ const Pokemon = ({ id, name, image, price }) => {
   const { /* cart, */ addToCart } = useCart();
 
   return (
-    <Wrapper store={store.id}>
+    <Wrapper store={store}>
       <div>
         <Picture>
           <img src={image} alt={name} />
