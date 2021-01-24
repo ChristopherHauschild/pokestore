@@ -10,8 +10,8 @@ import Conditional from 'components/Conditional';
 
 import Loading from 'components/Loading';
 import EmptyData from 'components/EmptyData';
-import ProductList from 'components/ProductList';
-import Product from 'components/Product';
+import PokemonList from 'components/PokemonList';
+import Pokemon from 'components/Pokemon';
 
 const AquaStorePage = ({ data, loading }) => {
   return (
@@ -26,19 +26,20 @@ const AquaStorePage = ({ data, loading }) => {
       </Conditional>
 
       <Conditional when={!loading && data.length > 0}>
-        <ProductList>
+        <PokemonList>
           {data.map(x => {
             const price = generateRandomValue(0, 2000);
             return (
-              <Product
+              <Pokemon
                 key={x.id}
+                id={x.id}
                 name={x.name}
                 image={x.sprites.other['official-artwork'].front_default}
                 price={price}
               />
             );
           })}
-        </ProductList>
+        </PokemonList>
       </Conditional>
     </Layout>
   );

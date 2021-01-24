@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import { Wrapper } from './styles';
 
-const ProductList = ({ children }) => {
+const PokemonList = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-ProductList.propTypes = {
+PokemonList.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ProductList;
+export default PokemonList;
