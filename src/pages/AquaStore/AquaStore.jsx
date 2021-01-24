@@ -8,13 +8,16 @@ const AquaStore = () => {
   const firstLoad = useRef(true);
 
   const [pokemons, setPokemons] = useState([]);
+  const [loadingPokemons, setLoadingPokemons] = useState(false);
 
   const { get: getWaterData, loading: loadingWater } = useFetch(); // prettier-ignore
-  const { get: getPokemons, loading: loadingPokemons } = useFetch(); // prettier-ignore
+  const { get: getPokemons } = useFetch(); // prettier-ignore
 
   const fetch = useCallback(async () => {
     const { pokemon } = await getWaterData({ url: '/type/water' });
     const waterPokemonsUrl = pokemon.slice(0, 10).map(x => x.pokemon.url);
+
+    setLoadingPokemons(true);
 
     await Promise.all(
       waterPokemonsUrl.map(async x => {
@@ -22,6 +25,8 @@ const AquaStore = () => {
         setPokemons(oldState => [...oldState, pokemonData]);
       }),
     );
+
+    setLoadingPokemons(false);
   }, [getWaterData, getPokemons]);
 
   useEffect(() => {

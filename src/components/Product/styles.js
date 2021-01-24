@@ -3,10 +3,20 @@ import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
 export const Picture = styled.picture`
-  align-items: center;
-  display: flex;
-  height: 220px;
-  width: 100%;
+  ${({ theme }) => css`
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    padding: ${theme.common.spacings.xxsmall};
+    width: 100%;
+
+    > img {
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
+    }
+  `}
 `;
 
 export const Name = styled.span`
@@ -51,6 +61,10 @@ export const Button = styled.button`
 
     > span {
       font-weight: ${theme.common.font.medium};
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   `}
 `;

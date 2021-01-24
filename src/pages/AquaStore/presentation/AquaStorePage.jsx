@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { generateRandomValue } from 'utils/randomValue';
+
 import Layout from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 
@@ -25,9 +27,17 @@ const AquaStorePage = ({ data, loading }) => {
 
       <Conditional when={!loading && data.length > 0}>
         <ProductList>
-          {data.map(x => (
-            <Product key={x.id} />
-          ))}
+          {data.map(x => {
+            const price = generateRandomValue(0, 2000);
+            return (
+              <Product
+                key={x.id}
+                name={x.name}
+                image={x.sprites.other['official-artwork'].front_default}
+                price={price}
+              />
+            );
+          })}
         </ProductList>
       </Conditional>
     </Layout>
