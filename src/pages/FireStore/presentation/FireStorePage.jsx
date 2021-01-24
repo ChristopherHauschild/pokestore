@@ -16,7 +16,7 @@ import Product from 'components/Product';
 const FireStorePage = ({ data, loading }) => {
   return (
     <Layout>
-      <PageTitle title="Pokémons de fogo" />
+      <PageTitle title="Pokémon de fogo" />
       <Conditional when={loading}>
         <Loading />
       </Conditional>

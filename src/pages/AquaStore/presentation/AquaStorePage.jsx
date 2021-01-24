@@ -16,7 +16,7 @@ import Product from 'components/Product';
 const AquaStorePage = ({ data, loading }) => {
   return (
     <Layout>
-      <PageTitle title="Pokémons aquáticos" />
+      <PageTitle title="Pokémon aquáticos" />
       <Conditional when={loading}>
         <Loading />
       </Conditional>

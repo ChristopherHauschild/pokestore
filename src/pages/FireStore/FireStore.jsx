@@ -7,27 +7,27 @@ import FireStorePage from './presentation/FireStorePage';
 const FireStore = () => {
   const firstLoad = useRef(true);
 
-  const [pokemons, setPokemons] = useState([]);
-  const [loadingPokemons, setLoadingPokemons] = useState(false);
+  const [pokemonData, setPokemonData] = useState([]);
+  const [loadingPokemon, setLoadingPokemon] = useState(false);
 
   const { get: getFireData, loading: loadingFire } = useFetch(); // prettier-ignore
-  const { get: getPokemons } = useFetch(); // prettier-ignore
+  const { get: getPokemon } = useFetch(); // prettier-ignore
 
   const fetch = useCallback(async () => {
     const { pokemon } = await getFireData({ url: '/type/fire' });
-    const firePokemonsUrl = pokemon.slice(0, 10).map(x => x.pokemon.url);
+    const firePokemonUrl = pokemon.slice(0, 10).map(x => x.pokemon.url);
 
-    setLoadingPokemons(true);
+    setLoadingPokemon(true);
 
     await Promise.all(
-      firePokemonsUrl.map(async x => {
-        const pokemonData = await getPokemons({ url: x });
-        setPokemons(oldState => [...oldState, pokemonData]);
+      firePokemonUrl.map(async x => {
+        const pokemonDetails = await getPokemon({ url: x });
+        setPokemonData(oldState => [...oldState, pokemonDetails]);
       }),
     );
 
-    setLoadingPokemons(false);
-  }, [getFireData, getPokemons]);
+    setLoadingPokemon(false);
+  }, [getFireData, getPokemon]);
 
   useEffect(() => {
     if (!firstLoad.current) return;
@@ -37,7 +37,7 @@ const FireStore = () => {
   }, [fetch]);
 
   return (
-    <FireStorePage data={pokemons} loading={loadingFire || loadingPokemons} />
+    <FireStorePage data={pokemonData} loading={loadingFire || loadingPokemon} />
   );
 };
 
