@@ -1,11 +1,13 @@
-import React, { createContext, useEffect, useContext, useState } from 'react';
+import React, { createContext, useEffect, useContext, useState, useCallback } from 'react'; // prettier-ignore
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 const StoreContext = createContext({});
 
 const StoreProvider = ({ children }) => {
   const [store, setStore] = useState(undefined);
+  const [search, setSearch] = useState(undefined);
 
   const matchWaterStore = useRouteMatch('/store/water');
   const matchFireStore = useRouteMatch('/store/fire');
@@ -15,8 +17,18 @@ const StoreProvider = ({ children }) => {
     if (matchFireStore) setStore('fire');
   }, [matchWaterStore, matchFireStore]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const onSearch = useCallback(
+    _.debounce(value => {
+      setSearch(value);
+    }, 200),
+    [],
+  );
+
   return (
-    <StoreContext.Provider value={{ store }}>{children}</StoreContext.Provider>
+    <StoreContext.Provider value={{ store, search, onSearch }}>
+      {children}
+    </StoreContext.Provider>
   );
 };
 

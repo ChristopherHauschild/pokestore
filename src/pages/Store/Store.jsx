@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useStore } from 'hooks/store';
 import { useFetch } from 'services/hooks';
 
+import { generateRandomValue } from 'utils/randomValue';
+
 import StorePage from './presentation/StorePage';
 
 const Store = () => {
@@ -24,7 +26,9 @@ const Store = () => {
     await Promise.all(
       pokemonUrl.map(async x => {
         const pokemonDetails = await getPokemon({ url: x });
-        setPokemonData(oldState => [...oldState, pokemonDetails]);
+        const price = generateRandomValue(0, 2000);
+        const formattedPokemon = { ...pokemonDetails, price };
+        setPokemonData(oldState => [...oldState, formattedPokemon]);
       }),
     );
 

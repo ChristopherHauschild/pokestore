@@ -9,21 +9,17 @@ import Conditional from 'components/Conditional';
 import { Wrapper, MainHeader, Title, Search, Cart, Sinalizer } from './styles';
 
 const Header = () => {
-  const { store } = useStore();
+  const { store, onSearch } = useStore();
   const { cart } = useCart();
 
   const headerTitle = useMemo(() => {
     return store === 'water' ? 'WaterStore' : 'FireStore';
   }, [store]);
 
-  const cartItems = useMemo(() => {
-    const parsedCartItems = Array.isArray(cart) ? cart : JSON.parse(cart);
-    return parsedCartItems.filter(x => x.type === store);
+  const cartCount = useMemo(() => {
+    const filteredCart = cart.filter(x => x.type === store);
+    return filteredCart.length >= 10 ? '+' : filteredCart.length;
   }, [cart, store]);
-
-  const cartItemsCount = useMemo(() => {
-    return cartItems.length >= 10 ? '+' : cartItems.length;
-  }, [cartItems]);
 
   return (
     <Wrapper store={store}>
@@ -32,15 +28,19 @@ const Header = () => {
           <h1>{headerTitle}</h1>
         </Title>
         <Search>
-          <input type="text" placeholder="Busque pelo nome do Pokémon..." />
+          <input
+            type="text"
+            placeholder="Busque pelo nome do Pokémon..."
+            onChange={e => onSearch(e.target.value)}
+          />
           <div>
             <IconSearch />
           </div>
         </Search>
         <Cart>
-          <Conditional when={cartItems.length > 0}>
+          <Conditional when={!!cartCount}>
             <Sinalizer>
-              <span>{cartItemsCount}</span>
+              <span>{cartCount}</span>
             </Sinalizer>
           </Conditional>
 

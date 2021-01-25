@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { generateRandomValue } from 'utils/randomValue';
+import { useStore } from 'hooks/store';
 
 import Layout from 'components/Layout';
 import PageTitle from 'components/PageTitle';
@@ -14,6 +14,12 @@ import PokemonList from 'components/PokemonList';
 import Pokemon from 'components/Pokemon';
 
 const StorePage = ({ data, loading, pageTitle }) => {
+  const { search } = useStore();
+
+  const filteredData = useMemo(() => {
+    return search ? data.filter(x => x.name.match(search)) : data;
+  }, [data, search]);
+
   return (
     <Layout>
       <PageTitle title={pageTitle} />
@@ -21,21 +27,20 @@ const StorePage = ({ data, loading, pageTitle }) => {
         <Loading />
       </Conditional>
 
-      <Conditional when={!loading && !data.length > 0}>
-        <EmptyData />
+      <Conditional when={!loading && !filteredData.length}>
+        <EmptyData search={search} />
       </Conditional>
 
-      <Conditional when={!loading && data.length > 0}>
+      <Conditional when={!loading && !!filteredData.length}>
         <PokemonList>
-          {data.map(x => {
-            const price = generateRandomValue(0, 2000);
+          {filteredData.map(x => {
             return (
               <Pokemon
                 key={x.id}
                 id={x.id}
                 name={x.name}
+                price={x.price}
                 image={x.sprites.other['official-artwork'].front_default}
-                price={price}
               />
             );
           })}
@@ -50,6 +55,7 @@ StorePage.propTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
+      price: PropTypes.number,
       sprites: PropTypes.shape({
         front_default: PropTypes.string,
       }),

@@ -5,7 +5,7 @@ const CartContext = createContext({});
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
-    return localStorage.getItem('@PokemonStore:cart') || [];
+    return JSON.parse(localStorage.getItem('@PokemonStore:cart')) || [];
   });
 
   const addToCart = useCallback(pokemon => {
