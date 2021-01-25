@@ -103,7 +103,7 @@ export const Search = styled.div`
   `}
 `;
 
-export const Cart = styled.button`
+export const ButtonCart = styled.button`
   ${({ theme }) => css`
     align-items: center;
     background-color: transparent;
@@ -194,7 +194,7 @@ export const Wrapper = styled.header`
       }
     }
 
-    ${Cart} {
+    ${ButtonCart} {
       > svg {
         color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
 

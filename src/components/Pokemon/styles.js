@@ -46,7 +46,7 @@ export const Plots = styled.span`
   `}
 `;
 
-export const Button = styled.button`
+export const ButtonAdd = styled.button`
   ${({ theme }) => css`
     align-items: center;
     border-radius: ${theme.common.border.radius.small};
@@ -91,7 +91,7 @@ export const Wrapper = styled.div`
       padding: ${theme.common.spacings.xsmall};
     }
 
-    ${Button} {
+    ${ButtonAdd} {
       background-color: ${store === 'water' ? theme.water.colors.primary : '#ffffff'};
       border: ${store === 'water' ? 'none' : `1px solid ${theme.fire.colors.primary}`};
       color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
