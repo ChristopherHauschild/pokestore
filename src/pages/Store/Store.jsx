@@ -20,18 +20,21 @@ const Store = () => {
     const pokemonUrl = pokemon.slice(0, 15).map(x => x.pokemon.url);
 
     setLoadingPokemon(true);
+
     await Promise.all(
       pokemonUrl.map(async x => {
         const pokemonDetails = await getPokemon({ url: x });
         setPokemonData(oldState => [...oldState, pokemonDetails]);
       }),
     );
+
     setLoadingPokemon(false);
   }, [getStoreData, getPokemon, store]);
 
   useEffect(() => {
     if (!firstLoad.current || !store) return;
     firstLoad.current = false;
+
     fetchPokemon();
   }, [fetchPokemon, store]);
 

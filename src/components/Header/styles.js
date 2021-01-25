@@ -103,16 +103,18 @@ export const Search = styled.div`
   `}
 `;
 
-export const Cart = styled.div`
+export const Cart = styled.button`
   ${({ theme }) => css`
     align-items: center;
+    background-color: transparent;
+    border: none;
     display: flex;
     justify-content: center;
     position: relative;
 
     > svg {
-      height: 32px;
-      width: 32px;
+      height: 34px;
+      width: 34px;
     }
 
     ${media.lessThan('medium')`
@@ -125,21 +127,35 @@ export const Cart = styled.div`
       top: 88vh;
       width: 60px;
     `}
+
+    &:hover {
+      opacity: 0.8;
+    }
   `}
 `;
 
 
 export const Sinalizer = styled.div`
-  border-radius: 50%;
-  height: 11.5px;
-  position: absolute;
-  right: -2px;
-  top: 2px;
-  width: 11.5px;
+  ${({ theme }) => css`
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 12px;
+    justify-content: center;
+    padding: ${theme.common.spacings.xxsmall};
+    position: absolute;
+    right: -2px;
+    top: 2px;
+    width: 12px;
 
-  ${media.lessThan('medium')`
-    right: 12px;
-    top: 16px;
+    > span {
+      font-size: ${theme.common.font.sizes.xsmall};
+    }
+
+    ${media.lessThan('medium')`
+      right: 12px;
+      top: 16px;
+    `}
   `}
 `;
 
@@ -190,8 +206,16 @@ export const Wrapper = styled.header`
       > ${Sinalizer} {
         background-color: ${store === 'water' ? theme.fire.colors.primary : '#ffffff'};
 
+        > span {
+          color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
+        }
+
         ${media.lessThan('medium')`
           background-color: ${theme.fire.colors.primary};
+
+          > span {
+            color: #ffffff;
+          }
         `}
       }
     }

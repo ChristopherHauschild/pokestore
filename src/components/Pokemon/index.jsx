@@ -11,7 +11,7 @@ import { Wrapper, Picture, Name, Price, Plots, Button } from './styles';
 
 const Pokemon = ({ id, name, image, price }) => {
   const { store } = useStore();
-  const { /* cart, */ addToCart } = useCart();
+  const { addToCart } = useCart();
 
   return (
     <Wrapper store={store}>
@@ -22,7 +22,9 @@ const Pokemon = ({ id, name, image, price }) => {
         <Name>{name}</Name>
         <Price>{toCurrency(price)}</Price>
         <Plots>{toPlots(price, 12)}</Plots>
-        <Button onClick={() => addToCart({ id, name, image, price })}>
+        <Button
+          onClick={() => addToCart({ id, name, image, price, type: store })}
+        >
           <IconAdd />
           <span>Comprar</span>
         </Button>
