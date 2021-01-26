@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FiMeh as IconMeh, FiSearch as IconSearch, FiPackage as IconPackage } from 'react-icons/fi'; // prettier-ignore
+import {
+  FiMeh as IconMeh,
+  FiSearch as IconSearch,
+  FiPackage as IconPackage,
+} from 'react-icons/fi';
 
 import Conditional from 'components/Conditional';
 

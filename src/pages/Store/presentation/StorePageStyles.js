@@ -8,7 +8,7 @@ export const List = styled.div`
     margin: -${theme.common.spacings.xsmall};
 
     ${media.lessThan('medium')`
-    justify-content: center;
-  `}
+      justify-content: center;
+    `}
   `}
 `;

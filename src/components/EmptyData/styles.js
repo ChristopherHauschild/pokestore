@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 
     > span {
       font-size: ${type === 'empty-cart' ? theme.common.font.sizes.xxlarge : theme.common.font.sizes.medium};
+      text-align: center;
 
       ${media.lessThan('medium')`
         font-size: ${type === 'empty-cart' ? theme.common.font.sizes.large : theme.common.font.sizes.small};

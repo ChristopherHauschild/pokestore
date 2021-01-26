@@ -40,6 +40,9 @@ const theme = {
       dark: '#323232',
       gray: '#929292',
       xgray: '#9b9b9b',
+      success: '#39c560',
+      error: '#eb5757',
+      info: '#2f80ed',
     },
   },
   water: {

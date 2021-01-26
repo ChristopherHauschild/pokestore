@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 import { StoreProvider } from 'hooks/store';
 import { CartProvider } from 'hooks/cart';
+import { ToastProvider } from 'hooks/toast';
 
 const AppProvider = ({ children }) => {
   return (
     <StoreProvider>
-      <CartProvider>{children}</CartProvider>
+      <CartProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </CartProvider>
     </StoreProvider>
   );
 };

@@ -31,8 +31,23 @@ const CartProvider = ({ children }) => {
     setCart(newStorageItem);
   }, []);
 
+  const refreshCart = useCallback(type => {
+    const allStorageItems =
+      JSON.parse(localStorage.getItem('@PokemonStore:cart')) || [];
+    const storeStorageItems = allStorageItems.filter(x => x.type !== type);
+
+    localStorage.setItem(
+      '@PokemonStore:cart',
+      JSON.stringify(storeStorageItems),
+    );
+
+    setCart([storeStorageItems]);
+  }, []);
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, refreshCart }}
+    >
       {children}
     </CartContext.Provider>
   );

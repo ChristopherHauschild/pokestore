@@ -4,6 +4,7 @@ import { FiPlus as IconAdd } from 'react-icons/fi';
 
 import { useStore } from 'hooks/store';
 import { useCart } from 'hooks/cart';
+import { useToast } from 'hooks/toast';
 
 import { toCurrency, toPlots } from 'utils/formatters';
 
@@ -12,12 +13,18 @@ import { Wrapper, Picture, Name, Price, Plots, ButtonAdd } from './styles';
 const Pokemon = ({ name, image, price }) => {
   const { store } = useStore();
   const { addToCart } = useCart();
+  const { addToast } = useToast();
 
   const onAddToCart = useCallback(
     pokemon => {
       addToCart(pokemon);
+      addToast({
+        type: 'info',
+        title: 'Pokémon adicionado ao carrinho',
+        description: `${pokemon.name} foi adicionado com sucesso.`,
+      });
     },
-    [addToCart],
+    [addToCart, addToast],
   );
 
   return (

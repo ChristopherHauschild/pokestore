@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { createContext, useEffect, useContext, useState, useCallback } from 'react'; // prettier-ignore
+import React, {
+  createContext,
+  useEffect,
+  useContext,
+  useState,
+  useCallback,
+} from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';

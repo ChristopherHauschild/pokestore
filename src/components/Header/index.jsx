@@ -1,5 +1,8 @@
 import React, { useMemo } from 'react';
-import { FiShoppingCart as IconCart, FiSearch as IconSearch } from 'react-icons/fi'; // prettier-ignore
+import {
+  FiShoppingCart as IconCart,
+  FiSearch as IconSearch,
+} from 'react-icons/fi';
 
 import { useStore } from 'hooks/store';
 import { useCart } from 'hooks/cart';
@@ -7,7 +10,14 @@ import { useCart } from 'hooks/cart';
 import Conditional from 'components/Conditional';
 import useCartModal from 'components/CartModal';
 
-import { Wrapper, MainHeader, Title, Search, ButtonCart, Sinalizer } from './styles'; // prettier-ignore
+import {
+  Wrapper,
+  MainHeader,
+  Title,
+  Search,
+  ButtonCart,
+  Sinalizer,
+} from './styles';
 
 const Header = () => {
   const { store, onSearch } = useStore();

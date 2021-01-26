@@ -3,6 +3,7 @@ import { FiX as IconX } from 'react-icons/fi';
 
 import { useStore } from 'hooks/store';
 import { useCart } from 'hooks/cart';
+import { useToast } from 'hooks/toast';
 
 import { toCurrency } from 'utils/formatters';
 
@@ -10,13 +11,21 @@ import Conditional from 'components/Conditional';
 import EmptyData from 'components/EmptyData';
 import CartPokemon from 'components/CartPokemon';
 
-import { Wrapper, ButtonClose, ModalTitle, Content, TotalPrice, ButtonFinish } from './styles'; // prettier-ignore
+import {
+  Wrapper,
+  ButtonClose,
+  ModalTitle,
+  Content,
+  TotalPrice,
+  ButtonFinish,
+} from './styles';
 
 const CartModal = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   const { store } = useStore();
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, refreshCart } = useCart();
+  const { addToast } = useToast();
 
   const openModal = useCallback(() => {
     setIsOpened(true);
@@ -38,11 +47,25 @@ const CartModal = () => {
   }, [cartStore]);
 
   const onRemovePokemon = useCallback(
-    id => {
-      removeFromCart(id);
+    pokemon => {
+      removeFromCart(pokemon.id);
+      addToast({
+        type: 'info',
+        title: 'Pokémon removido do carrinho',
+        description: `${pokemon.name} removido com sucesso.`,
+      });
     },
-    [removeFromCart],
+    [removeFromCart, addToast],
   );
+
+  const onFinish = useCallback(() => {
+    refreshCart(store);
+    addToast({
+      type: 'success',
+      title: 'Obrigado pela compra!',
+      description: `Total da compra: ${cartPrice}`,
+    });
+  }, [store, refreshCart, addToast, cartPrice]);
 
   const Modal = useMemo(() => {
     return (
@@ -66,7 +89,7 @@ const CartModal = () => {
                   image={x.image}
                   name={x.name}
                   price={x.price}
-                  onRemove={() => onRemovePokemon(x.id)}
+                  onRemove={() => onRemovePokemon({ id: x.id, name: x.name })}
                 />
               ))}
             </Conditional>
@@ -79,13 +102,21 @@ const CartModal = () => {
             </TotalPrice>
           </Conditional>
 
-          <ButtonFinish disabled={!cartStore.length}>
+          <ButtonFinish disabled={!cartStore.length} onClick={onFinish}>
             <strong>Finalizar compra</strong>
           </ButtonFinish>
         </div>
       </Wrapper>
     );
-  }, [isOpened, store, cartPrice, cartStore, onRemovePokemon, closeModal]);
+  }, [
+    isOpened,
+    store,
+    cartPrice,
+    cartStore,
+    onRemovePokemon,
+    onFinish,
+    closeModal,
+  ]);
 
   return { Modal, openModal };
 };
