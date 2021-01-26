@@ -20,7 +20,7 @@ export const MainHeader = styled.div`
   `}
 `;
 
-export const Title = styled.div`
+export const Logo = styled.div`
   ${({ theme }) => css`
     align-items: center;
     display: flex;
@@ -175,7 +175,7 @@ export const Wrapper = styled.header`
       padding: 0 ${theme.common.spacings.xsmall};
     `}
 
-    ${Title} {
+    ${Logo} {
       > h1 {
         color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
       }

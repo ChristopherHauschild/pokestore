@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import { useStore } from 'hooks/store';
 
 import Layout from 'components/Layout';
-import PageTitle from 'components/PageTitle';
 
 import Conditional from 'components/Conditional';
 import Loading from 'components/Loading';
 import EmptyData from 'components/EmptyData';
 import Pokemon from 'components/Pokemon';
 
-import { List } from './StorePageStyles';
+import { PageTitle, PokemonList } from './StorePageStyles';
 
 const StorePage = ({ data, loading, pageTitle }) => {
   const { search } = useStore();
@@ -22,7 +21,7 @@ const StorePage = ({ data, loading, pageTitle }) => {
 
   return (
     <Layout>
-      <PageTitle title={pageTitle} />
+      <PageTitle>{pageTitle}</PageTitle>
       <Conditional when={loading}>
         <Loading />
       </Conditional>
@@ -35,7 +34,7 @@ const StorePage = ({ data, loading, pageTitle }) => {
       </Conditional>
 
       <Conditional when={!loading && !!filteredData.length}>
-        <List>
+        <PokemonList>
           {filteredData.map(x => {
             return (
               <Pokemon
@@ -46,7 +45,7 @@ const StorePage = ({ data, loading, pageTitle }) => {
               />
             );
           })}
-        </List>
+        </PokemonList>
       </Conditional>
     </Layout>
   );

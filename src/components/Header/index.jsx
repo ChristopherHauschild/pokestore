@@ -13,7 +13,7 @@ import useCartModal from 'components/CartModal';
 import {
   Wrapper,
   MainHeader,
-  Title,
+  Logo,
   Search,
   ButtonCart,
   Sinalizer,
@@ -25,7 +25,7 @@ const Header = () => {
 
   const { Modal, openModal } = useCartModal();
 
-  const headerTitle = useMemo(() => {
+  const logoTitle = useMemo(() => {
     return store === 'water' ? 'WaterStore' : 'FireStore';
   }, [store]);
 
@@ -40,9 +40,9 @@ const Header = () => {
 
       <Wrapper store={store}>
         <MainHeader>
-          <Title>
-            <h1>{headerTitle}</h1>
-          </Title>
+          <Logo>
+            <h1>{logoTitle}</h1>
+          </Logo>
 
           <Search>
             <input
