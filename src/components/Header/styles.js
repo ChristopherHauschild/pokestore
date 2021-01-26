@@ -134,7 +134,6 @@ export const ButtonCart = styled.button`
   `}
 `;
 
-
 export const Sinalizer = styled.div`
   ${({ theme }) => css`
     align-items: center;
@@ -189,7 +188,7 @@ export const Wrapper = styled.header`
         background-color: ${store === 'water' ? '#ffffff' : theme.fire.colors.primary};
 
         > svg {
-          color:${store === 'water' ?  theme.water.colors.primary : '#ffffff'};
+          color: ${store === 'water' ? theme.water.colors.primary : '#ffffff'};
         }
       }
     }

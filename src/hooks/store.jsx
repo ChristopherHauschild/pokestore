@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useEffect, useContext, useState, useCallback } from 'react'; // prettier-ignore
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -17,10 +18,9 @@ const StoreProvider = ({ children }) => {
     if (matchFireStore) setStore('fire');
   }, [matchWaterStore, matchFireStore]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onSearch = useCallback(
-    _.debounce(value => {
-      setSearch(value);
+    _.debounce(searchValue => {
+      setSearch(searchValue);
     }, 200),
     [],
   );

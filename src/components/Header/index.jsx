@@ -20,8 +20,8 @@ const Header = () => {
   }, [store]);
 
   const cartCount = useMemo(() => {
-    const filteredCart = cart.filter(x => x.type === store);
-    return filteredCart.length >= 10 ? '+' : filteredCart.length;
+    const cartStore = cart.filter(x => x.type === store);
+    return cartStore.length >= 10 ? '+' : cartStore.length;
   }, [cart, store]);
 
   return (
@@ -33,16 +33,18 @@ const Header = () => {
           <Title>
             <h1>{headerTitle}</h1>
           </Title>
+
           <Search>
             <input
               type="text"
               placeholder="Busque pelo nome do Pokémon..."
-              onChange={e => onSearch(e.target.value)}
+              onChange={event => onSearch(event.target.value)}
             />
             <div>
               <IconSearch />
             </div>
           </Search>
+
           <ButtonCart onClick={openModal}>
             <Conditional when={!!cartCount}>
               <Sinalizer>

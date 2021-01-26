@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
-export const Wrapper = styled.div`
+export const List = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-wrap: wrap;

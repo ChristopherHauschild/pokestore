@@ -9,7 +9,7 @@ import { toCurrency, toPlots } from 'utils/formatters';
 
 import { Wrapper, Picture, Name, Price, Plots, ButtonAdd } from './styles';
 
-const Pokemon = ({ id, name, image, price }) => {
+const Pokemon = ({ name, image, price }) => {
   const { store } = useStore();
   const { addToCart } = useCart();
 
@@ -26,11 +26,14 @@ const Pokemon = ({ id, name, image, price }) => {
         <Picture>
           <img src={image} alt={name} />
         </Picture>
+
         <Name>{name}</Name>
+
         <Price>{toCurrency(price)}</Price>
         <Plots>{toPlots(price, 12)}</Plots>
+
         <ButtonAdd
-          onClick={() => onAddToCart({ id, name, image, price, type: store })}
+          onClick={() => onAddToCart({ name, image, price, type: store })}
         >
           <IconAdd />
           <span>Comprar</span>
@@ -41,7 +44,6 @@ const Pokemon = ({ id, name, image, price }) => {
 };
 
 Pokemon.propTypes = {
-  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

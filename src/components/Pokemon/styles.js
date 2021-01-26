@@ -62,6 +62,10 @@ export const ButtonAdd = styled.button`
     > span {
       font-weight: ${theme.common.font.medium};
     }
+
+    &:hover {
+      opacity: 0.6;
+    }
   `}
 `;
 

@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
+import { uuid } from 'uuidv4';
 import PropTypes from 'prop-types';
 
 const CartContext = createContext({});
@@ -11,17 +12,22 @@ const CartProvider = ({ children }) => {
   const addToCart = useCallback(pokemon => {
     let storageItems = [];
     storageItems = JSON.parse(localStorage.getItem('@PokemonStore:cart')) || [];
-    storageItems.push(pokemon);
+
+    const id = uuid();
+    storageItems.push({ ...pokemon, id });
+
     localStorage.setItem('@PokemonStore:cart', JSON.stringify(storageItems));
+
     setCart(storageItems);
   }, []);
 
   const removeFromCart = useCallback(id => {
-    const oldStorageItems = JSON.parse(
-      localStorage.getItem('@PokemonStore:cart'),
-    );
-    const newStorageItem = oldStorageItems.filter(x => x.name !== id);
+    const oldStorageItems =
+      JSON.parse(localStorage.getItem('@PokemonStore:cart')) || [];
+    const newStorageItem = oldStorageItems.filter(x => x.id !== id);
+
     localStorage.setItem('@PokemonStore:cart', JSON.stringify(newStorageItem));
+
     setCart(newStorageItem);
   }, []);
 

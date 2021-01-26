@@ -7,11 +7,11 @@ import Layout from 'components/Layout';
 import PageTitle from 'components/PageTitle';
 
 import Conditional from 'components/Conditional';
-
 import Loading from 'components/Loading';
 import EmptyData from 'components/EmptyData';
-import PokemonList from 'components/PokemonList';
 import Pokemon from 'components/Pokemon';
+
+import { List } from './StorePageStyles';
 
 const StorePage = ({ data, loading, pageTitle }) => {
   const { search } = useStore();
@@ -28,23 +28,25 @@ const StorePage = ({ data, loading, pageTitle }) => {
       </Conditional>
 
       <Conditional when={!loading && !filteredData.length}>
-        <EmptyData search={search} />
+        <EmptyData
+          search={search}
+          type={search ? 'empty-search' : 'empty-list'}
+        />
       </Conditional>
 
       <Conditional when={!loading && !!filteredData.length}>
-        <PokemonList>
+        <List>
           {filteredData.map(x => {
             return (
               <Pokemon
-                key={x.id}
-                id={x.id}
+                key={x.name}
                 name={x.name}
                 price={x.price}
                 image={x.sprites.other['official-artwork'].front_default}
               />
             );
           })}
-        </PokemonList>
+        </List>
       </Conditional>
     </Layout>
   );
