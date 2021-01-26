@@ -18,7 +18,7 @@ const icons = {
   info: <IconAlertCicle />,
 };
 
-const Toast = ({ message /* style */ }) => {
+const Toast = ({ message }) => {
   const { removeToast } = useToast();
 
   useEffect(() => {

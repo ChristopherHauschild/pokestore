@@ -10,26 +10,30 @@ const useFetch = () => {
 
   const { addToast } = useToast();
 
-  const get = useCallback(async ({ url, config }) => {
-    try {
-      setLoading(true);
+  const get = useCallback(
+    async ({ url, config }) => {
+      try {
+        setLoading(true);
 
-      const response = await api.get(url, config);
+        const response = await api.get(url, config);
 
-      setData(response?.data);
+        setData(response?.data);
 
-      return Promise.resolve(response?.data);
-    } catch (err) {
-      addToast({
-        type: 'error',
-        title: 'Houve um problema na requisição',
-        description: 'Por favor, tente novamente.',
-      });
-      return Promise.reject(err);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+        return Promise.resolve(response?.data);
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Houve um problema na requisição',
+          description: 'Por favor, tente novamente.',
+        });
+
+        return Promise.reject(err);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [addToast],
+  );
 
   return {
     get,

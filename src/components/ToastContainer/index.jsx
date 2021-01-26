@@ -20,8 +20,8 @@ const ToastContainer = ({ messages }) => {
 
   return (
     <Wrapper>
-      {messagesWithTransitions.map(({ item, key, props }) => (
-        <Toast key={key} style={props} message={item} />
+      {messagesWithTransitions.map(({ item, key }) => (
+        <Toast key={key} message={item} />
       ))}
     </Wrapper>
   );

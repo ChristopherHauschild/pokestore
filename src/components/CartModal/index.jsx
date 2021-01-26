@@ -43,6 +43,7 @@ const CartModal = () => {
     if (!cartStore.length) return undefined;
 
     const sumPrices = cartStore.map(x => x.price).reduce((x1, x2) => x1 + x2);
+
     return toCurrency(sumPrices);
   }, [cartStore]);
 

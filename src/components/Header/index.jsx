@@ -31,6 +31,7 @@ const Header = () => {
 
   const cartCount = useMemo(() => {
     const cartStore = cart.filter(x => x.type === store);
+
     return cartStore.length >= 10 ? '+' : cartStore.length;
   }, [cart, store]);
 
