@@ -62,7 +62,7 @@ export const Wrapper = styled(animated.div)`
 export const ButtonClose = styled.button`
   ${({ theme }) => css`
     background-color: transparent;
-    border: 0;
+    border: none;
     position: absolute;
     right: 16px;
     top: 18px;

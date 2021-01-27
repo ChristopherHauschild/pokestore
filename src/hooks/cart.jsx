@@ -41,7 +41,7 @@ const CartProvider = ({ children }) => {
       JSON.stringify(storeStorageItems),
     );
 
-    setCart([storeStorageItems]);
+    setCart(storeStorageItems);
   }, []);
 
   return (

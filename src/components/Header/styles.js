@@ -12,6 +12,13 @@ export const MainHeader = styled.div`
     padding: ${theme.common.spacings.xxsmall} 0;
     width: 100%;
 
+    > a {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      text-decoration: none;
+    }
+
     ${media.lessThan('medium')`
       align-items: initial;
       flex-direction: column;
@@ -22,9 +29,6 @@ export const MainHeader = styled.div`
 
 export const Logo = styled.div`
   ${({ theme }) => css`
-    align-items: center;
-    display: flex;
-
     > h1 {
       font-size: ${theme.common.font.sizes.xxxlarge};
 

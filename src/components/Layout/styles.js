@@ -11,6 +11,12 @@ export const MainContent = styled.main`
     padding: ${theme.common.spacings.small} ${theme.common.spacings.medium};
     width: 100%;
 
+    > div {
+      margin: 0 auto;
+      max-width: 1280px;
+      width: 100%;
+    }
+
     ${media.lessThan('medium')`
       min-height: calc(100% - 132px);
       padding: ${theme.common.spacings.small};
@@ -19,11 +25,5 @@ export const MainContent = styled.main`
     ${media.lessThan('small')`
       padding: ${theme.common.spacings.small} ${theme.common.spacings.xsmall};
     `}
-
-    > div {
-      margin: 0 auto;
-      max-width: 1280px;
-      width: 100%;
-    }
   `}
 `;

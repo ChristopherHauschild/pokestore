@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStore } from 'hooks/store';
@@ -8,20 +8,26 @@ import Layout from 'components/Layout';
 import Conditional from 'components/Conditional';
 import Loading from 'components/Loading';
 import EmptyData from 'components/EmptyData';
-import Pokemon from 'components/Pokemon';
+import PokemonCard from 'components/PokemonCard';
 
 import { PageTitle, PokemonList } from './StorePageStyles';
 
 const StorePage = ({ data, loading, pageTitle }) => {
-  const { search } = useStore();
+  const { search, setSearch } = useStore();
 
   const filteredData = useMemo(() => {
     return search ? data.filter(x => x.name.match(search)) : data;
   }, [data, search]);
 
+  useEffect(() => {
+    if (!data.length) setSearch(undefined);
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <Layout>
-      <PageTitle>{pageTitle}</PageTitle>
+      <PageTitle>
+        <h2>{pageTitle}</h2>
+      </PageTitle>
       <Conditional when={loading}>
         <Loading />
       </Conditional>
@@ -37,7 +43,7 @@ const StorePage = ({ data, loading, pageTitle }) => {
         <PokemonList>
           {filteredData.map(x => {
             return (
-              <Pokemon
+              <PokemonCard
                 key={x.name}
                 name={x.name}
                 price={x.price}

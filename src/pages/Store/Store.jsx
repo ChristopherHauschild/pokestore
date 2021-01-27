@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useStore } from 'hooks/store';
 import { useFetch } from 'services/hooks';
@@ -14,7 +8,7 @@ import { generateRandomValue } from 'utils/randomValue';
 import StorePage from './presentation/StorePage';
 
 const Store = () => {
-  const firstLoad = useRef(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const [pokemonData, setPokemonData] = useState([]);
   const [loadingPokemon, setLoadingPokemon] = useState(false);
@@ -24,6 +18,8 @@ const Store = () => {
   const { get: getPokemon } = useFetch();
 
   const fetchPokemon = useCallback(async () => {
+    setIsFirstLoad(false);
+
     const { pokemon } = await getStoreData({ url: `/type/${store}` });
     const pokemonUrl = pokemon.slice(0, 15).map(x => x.pokemon.url);
 
@@ -42,15 +38,15 @@ const Store = () => {
   }, [getStoreData, getPokemon, store]);
 
   useEffect(() => {
-    if (!firstLoad.current || !store) return;
-    firstLoad.current = false;
+    if (!store) return;
 
+    setPokemonData([]);
     fetchPokemon();
   }, [fetchPokemon, store]);
 
   const isLoading = useMemo(() => {
-    return loadingStore || loadingPokemon || firstLoad.current;
-  }, [loadingStore, loadingPokemon, firstLoad]);
+    return isFirstLoad || loadingStore || loadingPokemon;
+  }, [isFirstLoad, loadingStore, loadingPokemon]);
 
   const pageTitle = useMemo(() => {
     return store === 'water' ? 'Pokémon aquáticos' : 'Pokémon de fogo';

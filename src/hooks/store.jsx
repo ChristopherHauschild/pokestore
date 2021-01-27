@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   createContext,
   useEffect,
@@ -20,10 +19,18 @@ const StoreProvider = ({ children }) => {
   const matchFireStore = useRouteMatch('/store/fire');
 
   useEffect(() => {
-    if (matchWaterStore) setStore('water');
-    if (matchFireStore) setStore('fire');
+    if (matchWaterStore) {
+      setStore('water');
+      return;
+    }
+    if (matchFireStore) {
+      setStore('fire');
+      return;
+    }
+    setStore(undefined);
   }, [matchWaterStore, matchFireStore]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onSearch = useCallback(
     _.debounce(searchValue => {
       setSearch(searchValue);
@@ -32,7 +39,7 @@ const StoreProvider = ({ children }) => {
   );
 
   return (
-    <StoreContext.Provider value={{ store, search, onSearch }}>
+    <StoreContext.Provider value={{ store, search, setSearch, onSearch }}>
       {children}
     </StoreContext.Provider>
   );

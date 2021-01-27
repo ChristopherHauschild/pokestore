@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   FiShoppingCart as IconCart,
   FiSearch as IconSearch,
@@ -23,7 +24,7 @@ const Header = () => {
   const { store, onSearch } = useStore();
   const { cart } = useCart();
 
-  const { Modal, openModal } = useCartModal();
+  const { Modal: CartModal, openModal: openCartModal } = useCartModal();
 
   const logoTitle = useMemo(() => {
     return store === 'water' ? 'WaterStore' : 'FireStore';
@@ -37,13 +38,14 @@ const Header = () => {
 
   return (
     <>
-      {Modal}
-
+      {CartModal}
       <Wrapper store={store}>
         <MainHeader>
-          <Logo>
-            <h1>{logoTitle}</h1>
-          </Logo>
+          <Link to="/">
+            <Logo>
+              <h1>{logoTitle}</h1>
+            </Logo>
+          </Link>
 
           <Search>
             <input
@@ -56,7 +58,7 @@ const Header = () => {
             </div>
           </Search>
 
-          <ButtonCart onClick={openModal}>
+          <ButtonCart onClick={openCartModal}>
             <Conditional when={!!cartCount}>
               <Sinalizer>
                 <span>{cartCount}</span>

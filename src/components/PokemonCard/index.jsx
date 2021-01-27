@@ -10,7 +10,7 @@ import { toCurrency, toPlots } from 'utils/formatters';
 
 import { Wrapper, Picture, Name, Price, Plots, ButtonAdd } from './styles';
 
-const Pokemon = ({ name, image, price }) => {
+const PokemonCard = ({ name, image, price }) => {
   const { store } = useStore();
   const { addToCart } = useCart();
   const { addToast } = useToast();
@@ -50,10 +50,10 @@ const Pokemon = ({ name, image, price }) => {
   );
 };
 
-Pokemon.propTypes = {
+PokemonCard.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
 
-export default Pokemon;
+export default PokemonCard;
