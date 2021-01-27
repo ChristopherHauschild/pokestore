@@ -28,6 +28,7 @@ const StorePage = ({ data, loading, pageTitle }) => {
       <PageTitle>
         <h2>{pageTitle}</h2>
       </PageTitle>
+
       <Conditional when={loading}>
         <Loading />
       </Conditional>
